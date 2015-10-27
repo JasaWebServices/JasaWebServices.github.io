@@ -828,7 +828,7 @@
         //if (chimpRegex.test(action)) { data.handler = submitMailChimp; return; }
 
         // Custom form action
-        if (action) return;
+        if (action) return// data.handler=submitCustom;
 
         // Webflow form
         if (siteId) { data.handler = submitWebflow; return; }
@@ -910,6 +910,24 @@
           if (!emailValue.test(value)) status = 'Please enter a valid email address for: ' + name;
         }
         return status;
+      }
+
+      // Submit form to Custom site
+      function submitCustom(data) {
+        reset(data);
+
+        preventDefault(data);
+
+        // Disable submit button
+        disableBtn(data);
+
+        $.post(data.action, data.form.serialize())
+        .done(function() {
+          data.success = true;
+          afterSubmit(data);
+        }).fail(function(response, textStatus, jqXHR) {
+          afterSubmit(data);
+        });
       }
 
       // Submit form to Webflow
