@@ -825,7 +825,7 @@
         data.redirect = $el.attr('data-redirect');
 
         // MailChimp form
-        if (chimpRegex.test(action)) { data.handler = submitMailChimp; return; }
+        //if (chimpRegex.test(action)) { data.handler = submitMailChimp; return; }
 
         // Custom form action
         if (action) return;
