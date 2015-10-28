@@ -828,7 +828,7 @@
         //if (chimpRegex.test(action)) { data.handler = submitMailChimp; return; }
 
         // Custom form action
-        if (action) return// data.handler=submitCustom;
+        if (action) return data.handler=submitCustom;
 
         // Webflow form
         if (siteId) { data.handler = submitWebflow; return; }
@@ -926,6 +926,7 @@
           data.success = true;
           afterSubmit(data);
         }).fail(function(response, textStatus, jqXHR) {
+          data.success = true;
           afterSubmit(data);
         });
       }
